@@ -1,40 +1,10 @@
 import Link from 'next/link';
 import Image from "next/image";
-import { ReactNode } from "react";
-
-const Navbar = () => (
-  <nav className="bg-white/80 backdrop-blur-md shadow-custom-lg sticky top-0 z-50 border-b border-gray-200/50">
-    <div className="container mx-auto px-4 py-3 lg:px-6 lg:py-4">
-      <div className="flex justify-between items-center">
-        <div className="text-xl lg:text-2xl font-bold bg-primary-gradient bg-clip-text text-transparent">
-          ECommerce
-        </div>
-        <button className="md:hidden p-2">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-          <div className="relative">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 4.5M7 13l-1.5 4.5M17 13l1.5 4.5M17 13l4-8M16 13l-1.5 4.5m0 0L17 13m0 0l4-8M21 13l-1.5 4.5" />
-            </svg>
-            <span className="absolute -top-1 -right-1 bg-accent-gold text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">3</span>
-          </div>
-          <svg className="w-6 h-6 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
-          <button className="bg-primary-gradient text-white px-4 py-2 rounded-full font-semibold shadow-custom-lg hover:shadow-custom-xl transition-all lg:px-6 lg:py-2">
-            Sign In
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-);
+import NavbarComponent from '../components/Navbar';
+import FooterComponent from '../components/Footer';
 
 const Hero = () => (
-  <section className="relative h-[80vh] md:h-screen flex items-center overflow-hidden pt-16 md:pt-0">
+  <section className="relative h-[80vh] md:h-screen flex items-center overflow-hidden pt-20 md:pt-0">
     {/* Background gradient as dummy image */}
     <div className="absolute inset-0 bg-primary-gradient animate-float" />
     <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
@@ -125,7 +95,7 @@ const Categories = () => (
           { name: 'Sports', icon: 'M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 12.446a3 3 0 11-.82-5.893M14.122 12.446a3 3 0 11.819 5.893M4 11.893A6.964 6.1 0 0112 10.893c3.636 0 6.8 2.136 8.243 5.1', color: 'from-orange-500 to-red-500' }
         ].map((cat, i) => (
           <div key={i} className="group cursor-pointer shadow-custom-lg hover:shadow-custom-xl rounded-2xl p-8 text-center transition-all hover:-translate-y-2 bg-white overflow-hidden">
-            <div className={`w-24 h-24 ${cat.color} rounded-xl mx-auto mb-6 shadow-custom-lg group-hover:scale-110 transition-transform flex items-center justify-center`}>
+            <div className="w-24 h-24 ${cat.color} rounded-xl mx-auto mb-6 shadow-custom-lg group-hover:scale-110 transition-transform flex items-center justify-center">
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={cat.icon} />
               </svg>
@@ -154,7 +124,7 @@ const FeaturedProducts = () => (
           { slug: 'designer-backpack', name: 'Designer Backpack', price: '$129', oldPrice: '$189', rating: 4.8, imgColor: 'from-pink-400 to-rose-500' }
         ].map((prod, i) => (
           <Link key={i} href={`/${prod.slug}`} className="group bg-white rounded-3xl shadow-custom-xl hover:shadow-custom-xl overflow-hidden transition-all hover:-translate-y-4 cursor-pointer block">
-            <div className={`h-64 ${prod.imgColor} relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
+            <div className="h-64 ${prod.imgColor} relative overflow-hidden group-hover:scale-110 transition-transform duration-500">
               <div className="absolute inset-0 bg-black/10" />
               <div className="absolute top-6 right-6">
                 <span className="bg-white/90 text-black px-3 py-1 rounded-full text-sm font-bold">New</span>
@@ -163,7 +133,7 @@ const FeaturedProducts = () => (
             <div className="p-8">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, j) => (
-                  <svg key={j} className={`w-5 h-5 ${j < Math.floor(prod.rating) ? 'text-accent-gold fill-current' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={j} className="w-5 h-5 ${j < Math.floor(prod.rating) ? 'text-accent-gold fill-current' : 'text-gray-300'}" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
@@ -209,61 +179,19 @@ const Newsletter = () => (
   </section>
 );
 
-const Footer = () => (
-  <footer className="bg-gray-900/50 backdrop-blur-md border-t border-gray-800/50 text-white py-16">
-    <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-4 gap-12 mb-12">
-        <div>
-          <div className="text-3xl font-black bg-primary-gradient bg-clip-text text-transparent mb-6">ECommerce</div>
-          <p className="text-gray-400 mb-6">Your trusted online shopping destination for premium products.</p>
-          <div className="flex space-x-4">
-            <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition">f</a>
-            <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition">t</a>
-            <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition">i</a>
-          </div>
-        </div>
-        <div>
-          <h4 className="text-xl font-bold mb-6">Quick Links</h4>
-          <ul className="space-y-3 text-gray-400">
-            <li><a href="#" className="hover:text-white transition">About Us</a></li>
-            <li><a href="#" className="hover:text-white transition">Contact</a></li>
-            <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xl font-bold mb-6">Categories</h4>
-          <ul className="space-y-3 text-gray-400">
-            <li><a href="#" className="hover:text-white transition">Electronics</a></li>
-            <li><a href="#" className="hover:text-white transition">Fashion</a></li>
-            <li><a href="#" className="hover:text-white transition">Home</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xl font-bold mb-6">Support</h4>
-          <ul className="space-y-3 text-gray-400">
-            <li>Mon-Sat 9AM-5PM</li>
-            <li>+1 (555) 123-4567</li>
-            <li>support@ecommerce.com</li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-gray-800 pt-8 text-center text-gray-500">
-        &copy; 2024 ECommerce Store. All rights reserved. | Designed for modern shopping.
-      </div>
-    </div>
-  </footer>
-);
-
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <NavbarComponent />
+
       <Hero />
       <Features />
       <Categories />
       <FeaturedProducts />
       <Newsletter />
-      <Footer />
+      <FooterComponent />
     </>
   );
 }
+
+
