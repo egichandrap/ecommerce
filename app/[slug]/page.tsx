@@ -289,31 +289,33 @@ export default function ProductDetail() {
               {/* Related Products */}
               <section className="mt-24 pt-20 border-t border-gray-200">
                 <h2 className="text-4xl lg:text-5xl font-black text-center mb-16 bg-gradient-to-r from-gray-900 via-gray-800 to-black bg-clip-text drop-shadow-2xl">You might also like</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="flex gap-6 overflow-x-auto pb-8 -mx-4 px-4 sm:gap-8 sm:-mx-6 sm:px-6 scrollbar-hide snap-x snap-mandatory scroll-smooth justify-center">
                   {Object.values(products)
                     .filter((p: any) => p.name !== product.name)
-                    .slice(0, 3)
-                    .map((related: any, i) => (
-                      <Link 
-                        key={i} 
-                        href={`/${Object.keys(products).find(key => products[key as keyof typeof products] === related)}`}
-                        className="group block p-1 rounded-3xl bg-gradient-to-b from-white/60 to-gray-50 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-white/50 hover:border-emerald-200 overflow-hidden"
-                      >
-                        <div className="h-72 lg:h-80 bg-gradient-to-br from-emerald-500 via-teal-500 to-blue-600 relative rounded-3xl overflow-hidden group-hover:scale-[1.03] transition-all duration-500">
-                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300" />
-                          <div className="absolute top-4 right-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-emerald-700 shadow-lg animate-bounce">
-                            New Arrival
+                    .map((related: any, i) => {
+                      const relatedSlug = Object.keys(products).find(key => products[key as keyof typeof products] === related);
+                      return (
+                        <Link 
+                          key={i} 
+                          href={`/${relatedSlug}`}
+                          className="group block flex-shrink-0 w-72 sm:w-80 h-fit p-1 rounded-3xl bg-gradient-to-b from-white/60 to-gray-50 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-white/50 hover:border-emerald-200 overflow-hidden snap-center"
+                        >
+                          <div className="h-72 lg:h-80 bg-gradient-to-br from-emerald-500 via-teal-500 to-blue-600 relative rounded-3xl overflow-hidden group-hover:scale-[1.03] transition-all duration-500">
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300" />
+                            <div className="absolute top-4 right-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-emerald-700 shadow-lg animate-bounce">
+                              New Arrival
+                            </div>
                           </div>
-                        </div>
-                        <div className="p-6 lg:p-8">
-                          <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-tight">{related.name}</h3>
-                          <div className="flex items-baseline gap-3">
-                            <span className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text drop-shadow-lg">{related.price}</span>
-                            <span className="text-lg lg:text-xl text-gray-500 line-through font-medium">{related.oldPrice}</span>
+                          <div className="p-6 lg:p-8">
+                            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-tight">{related.name}</h3>
+                            <div className="flex items-baseline gap-3">
+                              <span className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text drop-shadow-lg">{related.price}</span>
+                              <span className="text-lg lg:text-xl text-gray-500 line-through font-medium">{related.oldPrice}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      );
+                    })}
                 </div>
               </section>
             </div>
