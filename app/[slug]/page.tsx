@@ -72,20 +72,29 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-4 md:pt-0">
-      {/* Breadcrumb mobile */}
-      <nav className="container mx-auto px-4 mb-6 md:hidden">
-        <Link href="/" className="text-primary-gradient font-semibold flex items-center">
-          ← Back
-        </Link>
-      </nav>
-      {/* Breadcrumb desktop */}
-      <nav className="container mx-auto px-4 mb-8 hidden md:block">
-        <Link href="/" className="text-gray-500 hover:text-primary-gradient transition flex items-center">
-          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      {/* Enhanced Breadcrumb - always visible, beautiful UI */}
+      <nav className="container mx-auto px-4 mb-8 lg:mb-12">
+        <div className="glass-effect backdrop-blur-md shadow-custom-lg rounded-2xl p-4 lg:p-6 flex items-center gap-3 max-w-2xl mx-auto">
+          <Link href="/" className="flex items-center gap-2 text-primary-gradient hover:scale-105 transition-all p-2 -m-2 rounded-xl hover:bg-white/20">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span className="font-semibold hidden lg:inline">Home</span>
+          </Link>
+          <svg className="w-5 h-5 text-gray-400 flex-shrink-0 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-          Home / {product.name}
-        </Link>
+          <Link href="/products" className="text-primary-gradient hover:scale-105 transition-all p-2 -m-2 rounded-xl hover:bg-white/20">
+            <span className="font-semibold hidden lg:inline">Products</span>
+            <svg className="w-5 h-5 lg:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </Link>
+          <svg className="w-5 h-5 text-gray-400 flex-shrink-0 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          <span className="text-gray-700 font-bold truncate flex-1 min-w-0">{product.name}</span>
+        </div>
       </nav>
 
       <div className="container mx-auto px-4 lg:px-6 py-8 lg:py-24">
