@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from "next/image";
 import { ReactNode } from "react";
 
@@ -148,11 +149,11 @@ const FeaturedProducts = () => (
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
-          { name: 'Wireless Headphones', price: '$299', oldPrice: '$399', rating: 4.9, imgColor: 'from-blue-400 to-purple-500' },
-          { name: 'Smart Watch Pro', price: '$199', oldPrice: '$299', rating: 4.7, imgColor: 'from-green-400 to-teal-500' },
-          { name: 'Designer Backpack', price: '$129', oldPrice: '$189', rating: 4.8, imgColor: 'from-pink-400 to-rose-500' }
+          { slug: 'wireless-headphones', name: 'Wireless Headphones', price: '$299', oldPrice: '$399', rating: 4.9, imgColor: 'from-blue-400 to-purple-500' },
+          { slug: 'smart-watch-pro', name: 'Smart Watch Pro', price: '$199', oldPrice: '$299', rating: 4.7, imgColor: 'from-green-400 to-teal-500' },
+          { slug: 'designer-backpack', name: 'Designer Backpack', price: '$129', oldPrice: '$189', rating: 4.8, imgColor: 'from-pink-400 to-rose-500' }
         ].map((prod, i) => (
-          <div key={i} className="group bg-white rounded-3xl shadow-custom-xl hover:shadow-custom-xl overflow-hidden transition-all hover:-translate-y-4 cursor-pointer">
+          <Link key={i} href={`/${prod.slug}`} className="group bg-white rounded-3xl shadow-custom-xl hover:shadow-custom-xl overflow-hidden transition-all hover:-translate-y-4 cursor-pointer block">
             <div className={`h-64 ${prod.imgColor} relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
               <div className="absolute inset-0 bg-black/10" />
               <div className="absolute top-6 right-6">
@@ -173,11 +174,13 @@ const FeaturedProducts = () => (
                 <span className="text-3xl font-black text-primary-gradient">{prod.price}</span>
                 <span className="ml-4 text-xl text-gray-500 line-through">{prod.oldPrice}</span>
               </div>
-              <button className="w-full bg-primary-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-custom-lg hover:shadow-custom-xl hover:scale-[1.02] transition-all">
-                Add to Cart
-              </button>
+              <div className="pt-4 border-t border-gray-100">
+                <button className="w-full bg-primary-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-custom-lg hover:shadow-custom-xl hover:scale-[1.02] transition-all">
+                  View Details
+                </button>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
