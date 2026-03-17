@@ -3,13 +3,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gold: #ffd700;
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary-gradient: var(--primary-gradient);
+  --color-secondary-gradient: var(--secondary-gradient);
+  --color-accent-gold: var(--accent-gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --shadow-lg-custom: var(--shadow-lg);
+  --shadow-xl-custom: var(--shadow-xl);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +34,43 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom utilities for design match */
+.bg-primary-gradient {
+  background: var(--primary-gradient);
+}
+
+.bg-secondary-gradient {
+  background: var(--secondary-gradient);
+}
+
+.shadow-custom-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-custom-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(10px);
+}
+
+.glass-effect {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
